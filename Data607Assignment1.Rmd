@@ -1,0 +1,53 @@
+---
+title: "Data 607 Assignment 1"
+author: "Laura Choi"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The data set selected for this weeks assignment focuses on the demographic age range of all members in congress, both senate and house of representatives. With this data set, I will be showcasing how long members have been with congress, as well as which age groups show higher prevalence within our legislative cabinet.
+
+The article chosen discusses how congress today is older than it has ever been in US History. To learn more, please go to [FiveThirtyEight Congress](https://fivethirtyeight.com/features/aging-congress-boomers/)
+
+``` {r load libraries}
+
+library(devtools)
+library(dplyr)
+```
+
+``` {r load RCurl}
+
+library(RCurl)
+
+```
+
+``` {r import file from Github}
+
+data <- read.csv("https://github.com/LauraChoi516/Congress-Age/raw/9a29fc60c88a5260aea3390b90f667d4aa5e3666/data_aging_congress.csv")
+
+```
+
+``` {r rename dataset}
+
+assign ("Age Congress", data)
+
+```
+
+``` {r rename columns}
+
+`Age Congress` |> 
+  select(PartyID = party_code, Name = bioname, chamber, birthday, Age =age_years, generation)
+```
+
+### Analysis and Additional Feedback
+
+We have been able to aggregate our data specifically showing the party members ID number, cabinet, date of birth, age, and age generation. Using this information, we can also begin transforming our data to show values such as median, or average age of congress. 
+
